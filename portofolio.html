@@ -1,0 +1,1502 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio - ZIX</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset dan variabel warna */
+        :root {
+            --primary-color: #8a2be2;
+            --primary-dark: #6a0dad;
+            --secondary-color: #e6d5ff;
+            --accent-color: #c77dff;
+            --dark-color: #1a1a2e;
+            --light-color: #f8f5ff;
+            --text-color: #333;
+            --text-light: #f8f5ff;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --border-radius: 20px;
+            --transition: all 0.3s ease;
+            --shadow: 0 10px 30px rgba(138, 43, 226, 0.15);
+            --shadow-hover: 0 15px 40px rgba(138, 43, 226, 0.25);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-color);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(138, 43, 226, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 30%, rgba(199, 125, 255, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 50% 80%, rgba(230, 213, 255, 0.1) 0%, transparent 20%);
+            z-index: -1;
+        }
+
+        /* Header dan Navigasi */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            box-shadow: var(--shadow);
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.8rem;
+            color: var(--primary-color);
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+
+        /* Menu titik tiga */
+        .menu-toggle {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border-radius: 50%;
+            background-color: var(--secondary-color);
+            transition: var(--transition);
+        }
+
+        .menu-toggle:hover {
+            background-color: var(--primary-color);
+            transform: rotate(90deg);
+        }
+
+        .menu-toggle:hover .dot {
+            background-color: white;
+        }
+
+        .dot {
+            width: 6px;
+            height: 6px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            margin: 0 2px;
+            transition: var(--transition);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-hover);
+            width: 250px;
+            padding: 1rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: var(--transition);
+            z-index: 1001;
+        }
+
+        .dropdown-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(10px);
+        }
+
+        .dropdown-menu ul {
+            list-style: none;
+        }
+
+        .dropdown-menu li {
+            padding: 0.8rem 1.5rem;
+            transition: var(--transition);
+        }
+
+        .dropdown-menu li:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .dropdown-menu a {
+            text-decoration: none;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+        }
+
+        .dropdown-menu i {
+            margin-right: 10px;
+            color: var(--primary-color);
+            width: 20px;
+        }
+
+        /* Main content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 6rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        /* Hero Section - DIPERBARUI untuk Desktop */
+        .hero {
+            padding-top: 10rem;
+            display: flex;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 3rem;
+            width: 100%;
+        }
+
+        .hero-text {
+            flex: 1;
+            min-width: 300px;
+            text-align: left;
+        }
+
+        .hero-image {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            justify-content: flex-end; /* Foto di kanan pada desktop */
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            color: var(--primary-color);
+        }
+
+        .hero-subtitle {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #555;
+        }
+
+        .profile-img {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid var(--primary-color);
+            box-shadow: var(--shadow-hover);
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05) rotate(3deg);
+            box-shadow: 0 20px 50px rgba(138, 43, 226, 0.3);
+        }
+
+        .hero-buttons {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        /* Tombol */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: 2px solid var(--primary-color);
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: var(--primary-color);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* About Section - DIPERBARUI untuk Desktop */
+        .about-content {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 3rem;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+
+        .about-image img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .about-image img:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .skills {
+            margin-top: 4rem; /* Dipindahkan lebih ke bawah */
+        }
+
+        .skills h3 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .skills h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        .skill-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-bar {
+            height: 10px;
+            background-color: var(--secondary-color);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .skill-level {
+            height: 100%;
+            background-color: var(--primary-color);
+            border-radius: 5px;
+            width: 0;
+            transition: width 1.5s ease;
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 6rem 0;
+            background-color: rgba(138, 43, 226, 0.03);
+            border-radius: var(--border-radius);
+            margin: 2rem auto;
+            max-width: 1200px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+            height: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .project-card:hover .project-img {
+            transform: scale(1.05);
+        }
+
+        .project-info {
+            padding: 1.5rem;
+        }
+
+        .project-info h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .tech-tag {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Products Section */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .product-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-img {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-info h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .price {
+            font-weight: bold;
+            color: var(--primary-dark);
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+        }
+
+        /* Contact Section - DIPERBARUI untuk Desktop */
+        .contact-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            justify-content: space-between;
+        }
+
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--secondary-color);
+            border-radius: var(--border-radius);
+            font-family: inherit;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.1);
+        }
+
+        .contact-details {
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            cursor: pointer;
+        }
+
+        .contact-item i {
+            width: 50px;
+            height: 50px;
+            background-color: var(--secondary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-right: 1rem;
+            transition: var(--transition);
+        }
+
+        .contact-item:hover i {
+            background-color: var(--primary-color);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: var(--text-light);
+            padding: 3rem 0;
+            text-align: center;
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .social-links a {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.3rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Animasi scroll */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Efek klik profesional */
+        .click-effect {
+            animation: clickPulse 0.3s ease;
+        }
+
+        @keyframes clickPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(0.95); }
+            100% { transform: scale(1); }
+        }
+
+        /* Efek hover untuk elemen interaktif */
+        .interactive-element {
+            transition: var(--transition);
+        }
+
+        .interactive-element:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Responsive untuk mobile - DIPERBARUI */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+                text-align: center; /* Teks di tengah */
+            }
+            
+            .hero-subtitle {
+                font-size: 1.5rem;
+                text-align: center; /* Teks di tengah */
+            }
+            
+            .hero-description {
+                text-align: center; /* Teks di tengah */
+            }
+            
+            .hero-content {
+                flex-direction: column-reverse; /* Foto di bawah teks */
+            }
+            
+            .hero-text {
+                padding-right: 0;
+                text-align: center; /* Semua teks di tengah */
+                width: 100%;
+            }
+            
+            .hero-image {
+                justify-content: center;
+                order: 2; /* Foto di bawah teks */
+                margin-top: 2rem;
+            }
+            
+            .hero-text {
+                order: 1; /* Teks di atas */
+            }
+            
+            .profile-img {
+                width: 200px;
+                height: 200px;
+            }
+            
+            section {
+                padding: 4rem 0;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 250px;
+                margin-bottom: 1rem;
+            }
+            
+            .skills {
+                margin-top: 2rem; /* Untuk mobile, keahlian tetap di posisi normal */
+            }
+            
+            .contact-details {
+                margin-top: 2rem; /* Untuk mobile, contact details tetap di bawah */
+            }
+        }
+
+        /* Desktop layout - TIDAK DIUBAH */
+        @media (min-width: 769px) {
+            .hero-content {
+                flex-direction: row; /* Foto di kanan pada desktop */
+            }
+            
+            .hero-text {
+                flex: 1.2; /* Lebih banyak ruang untuk teks */
+                padding-right: 3rem; /* Jarak antara teks dan foto */
+                text-align: left; /* Teks di kiri untuk desktop */
+            }
+            
+            .hero-image {
+                flex: 0.8; /* Lebih sedikit ruang untuk foto */
+                justify-content: flex-end; /* Foto di kanan */
+            }
+            
+            .profile-img {
+                width: 320px;
+                height: 320px;
+            }
+            
+            /* Tentang Saya - foto di kanan, teks di kiri */
+            .about-content {
+                flex-direction: row-reverse; /* Foto di kanan, teks di kiri */
+            }
+            
+            .about-text {
+                padding-right: 0;
+            }
+            
+            .about-image {
+                text-align: right;
+            }
+            
+            /* Kontak - form di kiri, info di kanan dan di bawah */
+            .contact-content {
+                flex-direction: column; /* Untuk desktop, ubah ke kolom */
+            }
+            
+            .contact-form {
+                width: 100%;
+            }
+            
+            .contact-details {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                gap: 1.5rem;
+                margin-top: 3rem;
+                width: 100%;
+            }
+            
+            .contact-item {
+                flex: 1;
+                min-width: 220px;
+                justify-content: flex-start;
+            }
+        }
+
+        /* Large desktop layout */
+        @media (min-width: 1024px) {
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 2rem;
+            }
+            
+            .profile-img {
+                width: 350px;
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header dan Navigasi -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-code"></i>
+                <span>Portofolio | ZIX707</span>
+            </div>
+            
+            <!-- Menu titik tiga -->
+            <div class="menu-toggle" id="menuToggle">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+            
+            <!-- Dropdown Menu -->
+            <div class="dropdown-menu" id="dropdownMenu">
+                <ul>
+                    <li><a href="#home"><i class="fas fa-home"></i> Beranda</a></li>
+                    <li><a href="#about"><i class="fas fa-user"></i> Tentang Saya</a></li>
+                    <li><a href="#projects"><i class="fas fa-project-diagram"></i> Project Saya</a></li>
+                    <li><a href="#products"><i class="fas fa-shopping-cart"></i> Penjualan</a></li>
+                    <li><a href="#contact"><i class="fas fa-envelope"></i> Kontak</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section - DIPERBARUI -->
+    <section id="home" class="hero fade-in">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Halo, Saya <span>ZIX Developer</span></h1>
+                    <div class="hero-subtitle">Full Stack Developer & UI/UX Designer</div>
+                    <p class="hero-description">Spesialis dalam pengembangan web modern dengan fokus pada performa, keamanan, dan pengalaman pengguna yang luar biasa.</p>
+                    <div class="hero-buttons">
+                        <a href="#about" class="btn interactive-element">Tentang Saya</a>
+                        <a href="#contact" class="btn btn-secondary interactive-element">Hubungi Saya</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="https://files.catbox.moe/e46wh5.jpg" 
+                         alt="Foto Profil" 
+                         class="profile-img interactive-element">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section - DIPERBARUI -->
+    <section id="about" class="about fade-in">
+        <div class="container">
+            <h2 class="section-title">Tentang Saya</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Saya adalah seorang Full Stack Developer dengan pengalaman lebih dari 5 tahun dalam pengembangan web. Saya memiliki passion untuk menciptakan pengalaman digital yang menarik dan fungsional.</p>
+                    <p>Saya ahli dalam HTML, CSS, JavaScript, React, Node.js, dan berbagai teknologi web modern. Saya selalu mengikuti perkembangan terbaru dalam dunia teknologi untuk memberikan solusi terbaik kepada klien.</p>
+                    <p>Pendekatan saya dalam setiap proyek adalah menggabungkan estetika visual dengan fungsionalitas teknis yang solid untuk menciptakan produk digital yang tidak hanya menarik secara visual tetapi juga kokoh secara teknis.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" 
+                         alt="Bekerja di Kantor" 
+                         class="interactive-element">
+                </div>
+            </div>
+            
+            <!-- Keahlian dipindahkan ke bawah pada desktop -->
+            <div class="skills">
+                <h3>Keahlian Saya</h3>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Pengembangan Web</span>
+                        <span>95%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-level" data-level="95"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>UI/UX Design</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-level" data-level="85"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>JavaScript & Framework</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-level" data-level="90"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Backend Development</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-level" data-level="80"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects fade-in">
+        <div class="container">
+            <h2 class="section-title">Project Saya</h2>
+            <p style="text-align: center; margin-bottom: 2rem;">Berikut adalah beberapa proyek yang telah saya selesaikan dengan teknologi modern dan pendekatan kreatif.</p>
+            
+            <div class="projects-grid">
+                <div class="project-card interactive-element">
+                    <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" 
+                         alt="E-Commerce Platform" 
+                         class="project-img">
+                    <div class="project-info">
+                        <h3>E-Commerce Platform</h3>
+                        <p>Platform e-commerce lengkap dengan sistem pembayaran, manajemen produk, dan dashboard admin.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MongoDB</span>
+                            <span class="tech-tag">Stripe API</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card interactive-element">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" 
+                         alt="Task Management App" 
+                         class="project-img">
+                    <div class="project-info">
+                        <h3>Task Management App</h3>
+                        <p>Aplikasi manajemen tugas dengan fitur kolaborasi tim, notifikasi real-time, dan analitik produktivitas.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Vue.js</span>
+                            <span class="tech-tag">Express</span>
+                            <span class="tech-tag">Socket.io</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card interactive-element">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" 
+                         alt="Health & Fitness Tracker" 
+                         class="project-img">
+                    <div class="project-info">
+                        <h3>Health & Fitness Tracker</h3>
+                        <p>Aplikasi pelacak kesehatan dengan integrasi wearable devices, analisis data, dan rekomendasi personal.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React Native</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Firebase</span>
+                            <span class="tech-tag">Chart.js</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="#contact" class="btn interactive-element">Hubungi Saya untuk Proyek</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products fade-in">
+        <div class="container">
+            <h2 class="section-title">Produk & Layanan</h2>
+            <p style="text-align: center; margin-bottom: 2rem;">Saya menawarkan berbagai produk dan layanan pengembangan web yang dapat membantu bisnis Anda tumbuh di era digital.</p>
+            
+            <div class="products-grid">
+                <div class="product-card interactive-element">
+                    <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Website Development" class="product-img">
+                    <div class="product-info">
+                        <h3>Website Development</h3>
+                        <p>Pembuatan website responsif dan modern untuk bisnis Anda dengan teknologi terbaru.</p>
+                        <div class="price">Rp 5.000.000 - Rp 25.000.000</div>
+                        <a href="#contact" class="btn interactive-element">Pesan Sekarang</a>
+                    </div>
+                </div>
+                
+                <div class="product-card interactive-element">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" alt="E-commerce Solution" class="product-img">
+                    <div class="product-info">
+                        <h3>E-commerce Solution</h3>
+                        <p>Platform e-commerce lengkap dengan sistem pembayaran dan manajemen inventaris.</p>
+                        <div class="price">Rp 15.000.000 - Rp 50.000.000</div>
+                        <a href="#contact" class="btn interactive-element">Pesan Sekarang</a>
+                    </div>
+                </div>
+                
+                <div class="product-card interactive-element">
+                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Mobile App Development" class="product-img">
+                    <div class="product-info">
+                        <h3>Mobile App Development</h3>
+                        <p>Aplikasi mobile untuk iOS dan Android yang terintegrasi dengan sistem Anda.</p>
+                        <div class="price">Rp 20.000.000 - Rp 75.000.000</div>
+                        <a href="#contact" class="btn interactive-element">Pesan Sekarang</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section - DIPERBARUI -->
+    <section id="contact" class="contact fade-in">
+        <div class="container">
+            <h2 class="section-title">Hubungi Saya</h2>
+            <p style="text-align: center; margin-bottom: 2rem;">Saya siap membantu mewujudkan ide digital Anda. Hubungi saya untuk konsultasi gratis!</p>
+            
+            <div class="contact-content">
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" placeholder="Nama Lengkap" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="Subjek" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea rows="5" placeholder="Pesan Anda" required></textarea>
+                        </div>
+                        <button type="submit" class="btn interactive-element">Kirim Pesan</button>
+                    </form>
+                </div>
+                
+                <!-- Contact details dipindahkan ke bawah pada desktop -->
+                <div class="contact-details">
+                    <div class="contact-item interactive-element">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h3>Lokasi</h3>
+                            <p>Jakarta, Indonesia</p>
+                        </div>
+                    </div>
+                    <div class="contact-item interactive-element">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h3>Telepon</h3>
+                            <p>+62 895 3849</p>
+                        </div>
+                    </div>
+                    <div class="contact-item interactive-element">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h3>Email</h3>
+                            <p>zix@developerportfolio.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item interactive-element">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h3>Jam Kerja</h3>
+                            <p>Senin - Jumat: 9:00 - 17:00</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="#home" class="btn btn-secondary interactive-element">Kembali ke Beranda</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="logo" style="justify-content: center; color: white; margin-bottom: 1rem;">
+                <i class="fas fa-code"></i>
+                <span>Portofolio | ZIX</span>
+            </div>
+            <p>Mari berkolaborasi untuk menciptakan solusi digital yang luar biasa!</p>
+            
+            <div class="social-links">
+                <a href="#" class="interactive-element"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="interactive-element"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="interactive-element"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="interactive-element"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="interactive-element"><i class="fab fa-github"></i></a>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 ZIX Developer. Semua hak dilindungi.</p>
+                <p>Dibuat dengan tema HyperOS Xiaomi</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu titik tiga toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        
+        menuToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            dropdownMenu.classList.toggle('active');
+            
+            // Rotasi tombol menu
+            if (dropdownMenu.classList.contains('active')) {
+                menuToggle.style.transform = 'rotate(90deg)';
+                menuToggle.classList.add('click-effect');
+            } else {
+                menuToggle.style.transform = 'rotate(0deg)';
+            }
+            
+            setTimeout(() => {
+                menuToggle.classList.remove('click-effect');
+            }, 300);
+        });
+        
+        // Tutup menu saat klik di luar
+        document.addEventListener('click', function(event) {
+            const isClickInsideMenu = menuToggle.contains(event.target) || dropdownMenu.contains(event.target);
+            
+            if (!isClickInsideMenu && dropdownMenu.classList.contains('active')) {
+                dropdownMenu.classList.remove('active');
+                menuToggle.style.transform = 'rotate(0deg)';
+            }
+        });
+        
+        // Animasi scroll untuk elemen
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const fadeInOnScroll = function() {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                    
+                    // Animate skill bars when they become visible
+                    if (element.id === 'about') {
+                        const skillLevels = document.querySelectorAll('.skill-level');
+                        skillLevels.forEach(level => {
+                            const levelWidth = level.getAttribute('data-level');
+                            level.style.width = levelWidth + '%';
+                        });
+                    }
+                }
+            });
+        };
+        
+        // Panggil saat halaman dimuat dan saat di-scroll
+        window.addEventListener('scroll', fadeInOnScroll);
+        window.addEventListener('load', fadeInOnScroll);
+        
+        // Efek klik pada foto profil
+        const profileImg = document.querySelector('.profile-img');
+        profileImg.addEventListener('click', function() {
+            this.classList.add('click-effect');
+            
+            // Efek partikel sederhana
+            const particles = document.createElement('div');
+            particles.style.position = 'absolute';
+            particles.style.width = '100%';
+            particles.style.height = '100%';
+            particles.style.top = '0';
+            particles.style.left = '0';
+            particles.style.borderRadius = '50%';
+            particles.style.boxShadow = '0 0 30px 20px rgba(138, 43, 226, 0.3)';
+            particles.style.animation = 'fadeOut 0.5s forwards';
+            
+            // Tambahkan style untuk animasi
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fadeOut {
+                    0% { opacity: 1; transform: scale(1); }
+                    100% { opacity: 0; transform: scale(1.2); }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            this.appendChild(particles);
+            
+            // Tampilkan pesan dengan efek profesional
+            setTimeout(() => {
+                const message = document.createElement('div');
+                message.textContent = "👋 Halo! Saya ZIX, Full Stack Developer";
+                message.style.position = 'fixed';
+                message.style.top = '50%';
+                message.style.left = '50%';
+                message.style.transform = 'translate(-50%, -50%)';
+                message.style.backgroundColor = 'var(--primary-color)';
+                message.style.color = 'white';
+                message.style.padding = '1rem 2rem';
+                message.style.borderRadius = 'var(--border-radius)';
+                message.style.zIndex = '10000';
+                message.style.boxShadow = 'var(--shadow-hover)';
+                message.style.animation = 'slideIn 0.3s ease';
+                
+                // Tambahkan style untuk animasi slideIn
+                const style2 = document.createElement('style');
+                style2.textContent = `
+                    @keyframes slideIn {
+                        0% { opacity: 0; transform: translate(-50%, -60%); }
+                        100% { opacity: 1; transform: translate(-50%, -50%); }
+                    }
+                    @keyframes slideOut {
+                        0% { opacity: 1; transform: translate(-50%, -50%); }
+                        100% { opacity: 0; transform: translate(-50%, -40%); }
+                    }
+                `;
+                document.head.appendChild(style2);
+                
+                document.body.appendChild(message);
+                
+                // Hapus pesan setelah 2 detik
+                setTimeout(() => {
+                    message.style.animation = 'slideOut 0.3s ease';
+                    setTimeout(() => {
+                        document.body.removeChild(message);
+                    }, 300);
+                }, 2000);
+            }, 300);
+            
+            // Hapus partikel setelah animasi
+            setTimeout(() => {
+                if (particles.parentNode === this) {
+                    this.removeChild(particles);
+                }
+                this.classList.remove('click-effect');
+            }, 500);
+        });
+        
+        // Efek klik profesional pada semua elemen interaktif
+        const interactiveElements = document.querySelectorAll('.interactive-element');
+        interactiveElements.forEach(element => {
+            element.addEventListener('click', function(e) {
+                if (this.tagName === 'A' && this.getAttribute('href')?.startsWith('#')) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        // Efek klik
+                        this.classList.add('click-effect');
+                        setTimeout(() => {
+                            this.classList.remove('click-effect');
+                        }, 300);
+                        
+                        // Smooth scroll ke target
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                } else {
+                    // Efek klik biasa
+                    this.classList.add('click-effect');
+                    setTimeout(() => {
+                        this.classList.remove('click-effect');
+                    }, 300);
+                }
+            });
+        });
+        
+        // Efek hover dengan shadow dinamis
+        interactiveElements.forEach(element => {
+            element.addEventListener('mouseenter', function() {
+                if (!this.classList.contains('click-effect')) {
+                    this.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+                }
+            });
+            
+            element.addEventListener('mouseleave', function() {
+                this.style.transition = 'var(--transition)';
+            });
+        });
+        
+        // Form submission dengan efek profesional
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simulasi pengiriman form dengan efek loading
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
+            submitBtn.disabled = true;
+            submitBtn.classList.add('click-effect');
+            
+            // Efek sukses dengan animasi
+            setTimeout(() => {
+                // Buat elemen konfirmasi
+                const successMsg = document.createElement('div');
+                successMsg.innerHTML = `
+                    <div style="
+                        position: fixed;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        background: white;
+                        padding: 2rem;
+                        border-radius: var(--border-radius);
+                        box-shadow: var(--shadow-hover);
+                        text-align: center;
+                        z-index: 10000;
+                        animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                    ">
+                        <i class="fas fa-check-circle" style="color: var(--primary-color); font-size: 3rem; margin-bottom: 1rem;"></i>
+                        <h3 style="color: var(--primary-color); margin-bottom: 0.5rem;">Pesan Terkirim!</h3>
+                        <p>Terima kasih! Saya akan membalas pesan Anda dalam 1x24 jam.</p>
+                        <button id="closeSuccess" style="
+                            margin-top: 1rem;
+                            padding: 0.5rem 2rem;
+                            background: var(--primary-color);
+                            color: white;
+                            border: none;
+                            border-radius: 50px;
+                            cursor: pointer;
+                        ">Tutup</button>
+                    </div>
+                    <div style="
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: rgba(0,0,0,0.5);
+                        z-index: 9999;
+                    "></div>
+                `;
+                
+                // Tambahkan style untuk animasi
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes popIn {
+                        0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+                        100% { transform: translate(-50%, -50%) scale(1); opacity: 1); }
+                `;
+                document.head.appendChild(style);
+                
+                document.body.appendChild(successMsg);
+                
+                // Reset form
+                contactForm.reset();
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('click-effect');
+                
+                // Tutup pesan sukses
+                document.getElementById('closeSuccess').addEventListener('click', function() {
+                    document.body.removeChild(successMsg);
+                });
+                
+                // Tutup pesan sukses setelah 5 detik
+                setTimeout(() => {
+                    if (document.body.contains(successMsg)) {
+                        document.body.removeChild(successMsg);
+                    }
+                }, 5000);
+            }, 1500);
+        });
+        
+        // Efek ketik teks profesional untuk hero section
+        const heroTitle = document.querySelector('.hero h1');
+        const heroSubtitle = document.querySelector('.hero-subtitle');
+        const heroDescription = document.querySelector('.hero-description');
+        
+        const originalTitle = heroTitle.textContent;
+        const originalSubtitle = heroSubtitle.textContent;
+        const originalDescription = heroDescription.textContent;
+        
+        heroTitle.textContent = '';
+        heroSubtitle.textContent = '';
+        heroDescription.textContent = '';
+        
+        let titleIndex = 0;
+        let subtitleIndex = 0;
+        let descriptionIndex = 0;
+        
+        function typeWriterTitle() {
+            if (titleIndex < originalTitle.length) {
+                heroTitle.textContent += originalTitle.charAt(titleIndex);
+                titleIndex++;
+                setTimeout(typeWriterTitle, 50);
+            } else {
+                setTimeout(typeWriterSubtitle, 300);
+            }
+        }
+        
+        function typeWriterSubtitle() {
+            if (subtitleIndex < originalSubtitle.length) {
+                heroSubtitle.textContent += originalSubtitle.charAt(subtitleIndex);
+                subtitleIndex++;
+                setTimeout(typeWriterSubtitle, 50);
+            } else {
+                setTimeout(typeWriterDescription, 300);
+            }
+        }
+        
+        function typeWriterDescription() {
+            if (descriptionIndex < originalDescription.length) {
+                heroDescription.textContent += originalDescription.charAt(descriptionIndex);
+                descriptionIndex++;
+                setTimeout(typeWriterDescription, 30);
+            }
+        }
+        
+        // Mulai efek ketik setelah halaman dimuat
+        setTimeout(typeWriterTitle, 500);
+        
+        // Efek partikel background sederhana
+        const createParticle = () => {
+            const particle = document.createElement('div');
+            particle.style.position = 'fixed';
+            particle.style.width = '4px';
+            particle.style.height = '4px';
+            particle.style.background = 'var(--primary-color)';
+            particle.style.borderRadius = '50%';
+            particle.style.top = Math.random() * 100 + 'vh';
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.opacity = '0.3';
+            particle.style.zIndex = '-1';
+            particle.style.animation = `float ${Math.random() * 5 + 3}s linear infinite`;
+            
+            // Tambahkan style untuk animasi float
+            const style = document.createElement('style');
+            if (!document.querySelector('#particle-style')) {
+                style.id = 'particle-style';
+                style.textContent = `
+                    @keyframes float {
+                        0%, 100% { transform: translateY(0) translateX(0); opacity: 0.3; }
+                        50% { transform: translateY(-20px) translateX(10px); opacity: 0.6; }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+            
+            document.body.appendChild(particle);
+            
+            // Hapus partikel setelah animasi selesai
+            setTimeout(() => {
+                if (particle.parentNode === document.body) {
+                    document.body.removeChild(particle);
+                }
+            }, 8000);
+        };
+        
+        // Buat partikel secara berkala
+        setInterval(createParticle, 500);
+        
+        // Buat beberapa partikel awal
+        for (let i = 0; i < 10; i++) {
+            setTimeout(createParticle, i * 300);
+        }
+        
+        // Efek ripple saat mengklik di mana saja
+        document.addEventListener('click', function(e) {
+            // Jangan buat ripple jika mengklik elemen yang sudah ada efek khusus
+            if (e.target.closest('.interactive-element') || e.target.closest('#menuToggle')) return;
+            
+            const ripple = document.createElement('div');
+            ripple.style.position = 'fixed';
+            ripple.style.width = '20px';
+            ripple.style.height = '20px';
+            ripple.style.borderRadius = '50%';
+            ripple.style.background = 'rgba(138, 43, 226, 0.3)';
+            ripple.style.top = e.clientY - 10 + 'px';
+            ripple.style.left = e.clientX - 10 + 'px';
+            ripple.style.zIndex = '9998';
+            ripple.style.animation = 'ripple 0.6s linear forwards';
+            
+            // Tambahkan style untuk animasi ripple
+            const style = document.createElement('style');
+            if (!document.querySelector('#ripple-style')) {
+                style.id = 'ripple-style';
+                style.textContent = `
+                    @keyframes ripple {
+                        0% { transform: scale(1); opacity: 0.7; }
+                        100% { transform: scale(20); opacity: 0; }
+                `;
+                document.head.appendChild(style);
+            }
+            
+            document.body.appendChild(ripple);
+            
+            // Hapus ripple setelah animasi selesai
+            setTimeout(() => {
+                if (ripple.parentNode === document.body) {
+                    document.body.removeChild(ripple);
+                }
+            }, 600);
+        });
+    </script>
+</body>
+</html>
